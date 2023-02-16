@@ -1,0 +1,16 @@
+{
+  "name": "puppeteera",
+  "dependencies": {
+    "puppeteer": "19.5.2"
+  },
+  "devDependencies": {
+    "typescript": "4.6.4"
+  },
+  "prettier": {
+    "parser": "typescript",
+    "printWidth": 120,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all"
+  }
+}
