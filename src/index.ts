@@ -1,7 +1,6 @@
 import * as puppeteer from 'puppeteer';
 
-(async () => {
-    const browser = await puppeteer.launch();
+const getChromeDevPage = async (browser: puppeteer.Browser) => {
     const page = await browser.newPage();
 
     await page.goto('https://developer.chrome.com/');
@@ -25,4 +24,9 @@ import * as puppeteer from 'puppeteer';
     console.log('The title of this blog post is "%s".', fullTitle);
 
     await browser.close();
+};
+
+(async () => {
+    const browser = await puppeteer.launch();
+    await getChromeDevPage(browser);
 })();
