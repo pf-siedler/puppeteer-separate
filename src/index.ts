@@ -1,6 +1,8 @@
-import * as puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer-core';
+import { setTimeout } from 'timers/promises';
 
-const getChromeDevPage = async (browser: puppeteer.Browser) => {
+const getChromeDevPage = async (browserURL: string) => {
+    const browser = await puppeteer.connect({ browserURL });
     const page = await browser.newPage();
 
     await page.goto('https://developer.chrome.com/');
@@ -27,6 +29,18 @@ const getChromeDevPage = async (browser: puppeteer.Browser) => {
 };
 
 (async () => {
-    const browser = await puppeteer.launch();
-    await getChromeDevPage(browser);
+    const browserURL = process.env.BROWSER_ADDR;
+    if (browserURL === undefined) {
+        console.error('Environment variable `BROWSER_ADDR` is not set.');
+        return;
+    }
+    while (true) {
+        try {
+            await getChromeDevPage(browserURL);
+        } catch (e) {
+            console.error('failue', { e });
+            break;
+        }
+        await setTimeout(10 * 1000);
+    }
 })();

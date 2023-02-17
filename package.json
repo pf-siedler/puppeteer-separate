@@ -1,7 +1,7 @@
 {
   "name": "puppeteera",
   "dependencies": {
-    "puppeteer": "19.5.2"
+    "puppeteer-core": "19.5.2"
   },
   "devDependencies": {
     "typescript": "4.6.4"
@@ -12,5 +12,9 @@
     "singleQuote": true,
     "tabWidth": 4,
     "trailingComma": "all"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node ./dest"
   }
 }
