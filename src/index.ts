@@ -1,4 +1,5 @@
-import * as puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer-core';
+import { setTimeout } from 'timers/promises';
 
 const getChromeDevPage = async (browser: puppeteer.Browser) => {
     const page = await browser.newPage();
@@ -27,6 +28,12 @@ const getChromeDevPage = async (browser: puppeteer.Browser) => {
 };
 
 (async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.connect({ browserURL: process.env.BROWSER_ADDR });
     await getChromeDevPage(browser);
-})();
+})()
+    .then(() => {
+        console.log('finished');
+    })
+    .catch((e) => {
+        console.error(e);
+    });
