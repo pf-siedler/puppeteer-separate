@@ -7,8 +7,8 @@
       nodejs = pkgs.nodejs-16_x;
     in
     with pkgs; {
-
-      devShell.x86_64-darwin = mkShell { buildInputs = [ nodejs yarn ]; };
-
+      devShell.x86_64-darwin = mkShell {
+        buildInputs = [ nodejs yarn kind ];
+      };
     };
 }
