@@ -1,5 +1,4 @@
 import * as puppeteer from 'puppeteer-core';
-import { setTimeout } from 'timers/promises';
 
 const getChromeDevPage = async (browser: puppeteer.Browser) => {
     const page = await browser.newPage();
