@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: scraping
+  labels:
+    app: scraping
+spec:
+  template:
+    metadata:
+      labels:
+        app: scraping
+    spec:
+      containers:
+        - name: scraping
+          image: scraping:1.0.0
+          env:
+            - name: BROWSER_ADDR
+              value: ws://chrome.chrome-ns.svc.cluster.local:3000
+      restartPolicy: OnFailure

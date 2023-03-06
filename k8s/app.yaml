@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraping
+  labels:
+    app: scraping
+spec:
+  selector:
+    matchLabels:
+      app: scraping
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: scraping
+    spec:
+      containers:
+        - name: scraping
+          image: scraping:1.0.0
+          env:
+            - name: BROWSER_ADDR
+              value: "ws://localhost:3000"
+        - name: chrome
+          image: browserless/chrome
+          ports:
+            - name: chrome
+              containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always

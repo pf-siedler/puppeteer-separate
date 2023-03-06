@@ -10,8 +10,10 @@ RUN nix-env -iA nixpkgs.yarn
 COPY . .
 
 RUN \
-  nix-build && \
+  nix-build -o result && \
   nix-collect-garbage -d
+
+WORKDIR /workdir/result
 
 ENTRYPOINT ["/root/.nix-profile/bin/tini", "--"]
 

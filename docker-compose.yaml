@@ -6,6 +6,6 @@ services:
       - 3000:3000
 
   app:
-    image: myapp:1.0.0
+    build: .
     environment:
-      - BROWSER_ADDR=ws://chrome:3000
+      - BROWSER_ADDR=http://chrome:3000
