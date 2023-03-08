@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  scraping
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraping
+  namespace: scraping
+  labels:
+    app: scraping
+spec:
+  selector:
+    matchLabels:
+      app: scraping
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: scraping
+    spec:
+      containers:
+        - name: scraping
+          image: scraping:1.0.0
+          env:
+            - name: BROWSER_ADDR
+              value: "http://chrome-svc.chrome-ns.svc.cluster.local:3000"
+      restartPolicy: Always
