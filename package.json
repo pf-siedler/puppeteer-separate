@@ -1,5 +1,5 @@
 {
-  "name": "puppeteera",
+  "name": "puppeteer-separete",
   "dependencies": {
     "puppeteer-core": "19.5.2"
   },
